@@ -215,4 +215,7 @@ python scripts/summarize.py --baseline --file article.txt --enforce-numbers
 
 ## Ghi Chú GitHub
 
-Repo chỉ nên chứa code, config, test, báo cáo dạng markdown, dataset final nhỏ và LoRA adapter gọn trong `checkpoints/`. Cache Hugging Face, raw crawl, full training outputs và các file annotation trung gian nên để ngoài GitHub hoặc đưa lên Hugging Face Hub/Google Drive.
+Repo chỉ chứa code, config, test, báo cáo dạng markdown, dataset final nhỏ và LoRA adapter gọn trong `checkpoints/`. Cache Hugging Face, raw crawl, full training outputs và các file annotation trung gian nên để ngoài GitHub hoặc đưa lên Hugging Face Hub/Google Drive.
+
+## Khó Khăn
+Qua thử nghiệm, mô hình tóm tắt encoder-decoder có xu hướng tạo ra bản tóm tắt mạch lạc nhưng không luôn bảo toàn đầy đủ số liệu tài chính. Một số lỗi phổ biến gồm bỏ sót số liệu ở cuối bài, sinh thêm số không thuộc required_numbers, hoặc đưa số liệu vào summary dưới dạng liệt kê thiếu tự nhiên. Do yêu cầu Number Accuracy là ràng buộc cứng, đồ án bổ sung tầng kiểm tra và sửa lỗi sau sinh gồm: trích xuất số liệu, kiểm tra missing/extra numbers, kiểm tra độ dài, sinh lại có điều kiện và chỉ chấp nhận summary khi cả Number Accuracy và Length Compliance đều đạt. Ngoài ra, hệ thống đề xuất biểu diễn số liệu bằng placeholder [NUM_i] để giảm lỗi định dạng và tăng khả năng bảo toàn số liệu khi fine-tune.
