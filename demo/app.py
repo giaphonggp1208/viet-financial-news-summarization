@@ -36,8 +36,12 @@ from visum.postprocess import (
 from visum.text import normalize_whitespace, word_count
 
 
-BARTPHO_DIR = ROOT / "outputs" / "bartpho-syllable-lora-cafef-stock"
-VIT5_DIR = ROOT / "outputs" / "vit5-base-lora-cafef-stock"
+BARTPHO_OUTPUT_DIR = ROOT / "outputs" / "bartpho-syllable-lora-cafef-stock"
+VIT5_OUTPUT_DIR = ROOT / "outputs" / "vit5-base-lora-cafef-stock"
+BARTPHO_CHECKPOINT_DIR = ROOT / "checkpoints" / "bartpho-syllable-lora-cafef-stock"
+VIT5_CHECKPOINT_DIR = ROOT / "checkpoints" / "vit5-base-lora-cafef-stock"
+BARTPHO_DIR = BARTPHO_OUTPUT_DIR if BARTPHO_OUTPUT_DIR.exists() else BARTPHO_CHECKPOINT_DIR
+VIT5_DIR = VIT5_OUTPUT_DIR if VIT5_OUTPUT_DIR.exists() else VIT5_CHECKPOINT_DIR
 TEST_FILE = ROOT / "data" / "processed_cafef_stock_1160" / "test.jsonl"
 
 MODEL_PRESETS = {

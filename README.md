@@ -79,6 +79,7 @@ pytest
 
 ```text
 configs/                         Cấu hình fine-tune ViT5, BARTpho, mT5
+checkpoints/                     LoRA adapter gọn để demo
 data/processed_cafef_stock_1160/ Dataset train/val/test đã chuẩn hóa
 demo/app.py                      Web UI Gradio
 report/                          Ghi chú báo cáo và kết quả thực nghiệm
@@ -170,7 +171,7 @@ BARTpho-syllable LoRA:
 python scripts/train.py --config configs/bartpho_syllable_lora_3060.yaml --data-dir data/processed_cafef_stock_1160
 ```
 
-Checkpoint mặc định được lưu vào `outputs/`. Thư mục này bị ignore khỏi GitHub vì có thể lớn và nên được chia sẻ qua Hugging Face Hub hoặc Google Drive.
+Checkpoint mặc định sau train được lưu vào `outputs/`. Repo cũng có bản LoRA adapter gọn trong `checkpoints/` để Web UI có thể demo ngay sau khi clone. Khi chạy lần đầu, Transformers vẫn cần tải base model tương ứng từ Hugging Face.
 
 ## Đánh Giá
 
@@ -214,4 +215,4 @@ python scripts/summarize.py --baseline --file article.txt --enforce-numbers
 
 ## Ghi Chú GitHub
 
-Repo chỉ nên chứa code, config, test, báo cáo dạng markdown và dataset final nhỏ. Checkpoint, cache Hugging Face, raw crawl và các file annotation trung gian nên để ngoài GitHub hoặc đưa lên Hugging Face Hub/Google Drive.
+Repo chỉ nên chứa code, config, test, báo cáo dạng markdown, dataset final nhỏ và LoRA adapter gọn trong `checkpoints/`. Cache Hugging Face, raw crawl, full training outputs và các file annotation trung gian nên để ngoài GitHub hoặc đưa lên Hugging Face Hub/Google Drive.
