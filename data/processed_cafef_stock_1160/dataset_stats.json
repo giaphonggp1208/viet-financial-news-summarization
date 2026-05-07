@@ -1,0 +1,14 @@
+{
+  "valid_total": 1160,
+  "invalid_total": 0,
+  "train": 928,
+  "val": 116,
+  "test": 116,
+  "quality": {
+    "number_accuracy": 1.0,
+    "length_compliance": 1.0,
+    "avg_compression_ratio": 0.21994724137931035,
+    "n_samples": 1160
+  },
+  "warnings": []
+}

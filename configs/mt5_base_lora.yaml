@@ -1,0 +1,34 @@
+model_name: google/mt5-base
+run_name: mt5-base-lora-finance-number-safe
+output_dir: outputs/mt5-base-lora
+prefix: "summarize: "
+max_source_length: 1024
+max_target_length: 256
+generation:
+  num_beams: 4
+  length_penalty: 1.0
+  no_repeat_ngram_size: 3
+  min_ratio: 0.20
+  max_ratio: 0.25
+training:
+  num_train_epochs: 5
+  learning_rate: 1.0e-4
+  weight_decay: 0.01
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  gradient_accumulation_steps: 8
+  warmup_ratio: 0.06
+  eval_strategy: epoch
+  save_strategy: epoch
+  logging_steps: 50
+  predict_with_generate: true
+  fp16: true
+lora:
+  enabled: true
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules:
+    - q
+    - v
+
